@@ -34,12 +34,12 @@ s3_video_sc=REDUCED_REDUNDANCY
 video_filepath="$2"
 video_filename="$(basename -- "$video_filepath")"
 video_filename_no_ext=$(echo $video_filename | cut -f 1 -d '.')
-html_template=video-player-template.html
+html_template_url="https://raw.githubusercontent.com/webmocha/upload-video.sh/master/video-player-template.html"
 video_player_html_filename="$video_filename_no_ext.html"
 video_player_html_filepath="/tmp/$video_player_html_filename"
 
 render_video_player_html() {
-  cat $html_template | sed s/\{\{VIDEO_FILENAME\}\}/"$video_filename"/ > "$video_player_html_filepath"
+  curl $html_template_url | sed s/\{\{VIDEO_FILENAME\}\}/"$video_filename"/ > "$video_player_html_filepath"
 }
 
 upload_to_bucket() {
