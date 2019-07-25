@@ -13,13 +13,13 @@ usage: ./upload-video.sh [directory] [video_file_name]
 [directory]       the s3 prefix in s3://$s3_bucket
 [video_file_path] path for the video to upload
 
-example:          ./upload-video.sh labs ~/Videos/42_preview.mp4
+example:          ./upload-video.sh client-name ~/Videos/42_preview.mp4
 
 results:
 
-  CREATE          s3://$s3_bucket/labs/42_preview.mp4
-  CREATE          s3://$s3_bucket/labs/42_preview.html
-  PUBLISHED       https://s3-us-west-2.amazonaws.com/$s3_bucket/labs/42_preview.html
+  CREATE          s3://$s3_bucket/client-name/42_preview.mp4
+  CREATE          s3://$s3_bucket/client-name/42_preview.html
+  PUBLISHED       https://$s3_bucket.s3-us-west-2.amazonaws.com/client-name/42_preview.html
 HELP_USAGE
 
   exit 1
@@ -64,7 +64,7 @@ print_results() {
   echo ""
   echo "Video has been published"
   echo "Public Url:"
-  echo "              https://s3-$s3_region.amazonaws.com/$s3_bucket/$s3_pre/$video_player_html_filename"
+  echo "              https://$s3_bucket.s3-$s3_region.amazonaws.com/$s3_pre/$video_player_html_filename"
 }
 
 render_video_player_html
